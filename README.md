@@ -50,4 +50,4 @@ Other components will be added in the future
 #### URL
 The application has just one url /login which ties to *UserInfo*  list. Register a new client to log in to the system
 
-#End
+# End
