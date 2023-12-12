@@ -1,0 +1,18 @@
+h1 {
+    background-color: lightgreen;
+    color:blueviolet;
+    font-family: sans-serif;
+    font-weight: bolder;
+    padding: 10px;
+    
+}
+
+.p {
+    padding: 20px;
+    text-align: justify-all;
+}
+
+.div {
+    border: 5px solid blue;
+    background-color: aquamarine;
+}
