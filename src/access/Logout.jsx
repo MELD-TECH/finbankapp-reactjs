@@ -1,6 +1,8 @@
 import {useMutation} from 'react-query';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from 'reactstrap';
 
 const url = "http://localhost:8080/user/logout";
 
@@ -13,8 +15,7 @@ function Logout(){
                                                         )
                                                 .then((res) => 
                                                       
-                                                      res.data
-                                                     )
+                                                      console.log("logout data ", res.data))
                                                
                                                );
     
@@ -36,9 +37,9 @@ function Logout(){
     return(
     <>
     <div>
-        <button type="button" onClick={submitData}>Logout</button>
-        </div>
-        </>
+        <Button type="button" onClick={submitData} color="primary">Logout</Button>
+    </div>
+    </>
     )
     
 

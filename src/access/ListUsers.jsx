@@ -4,6 +4,8 @@ import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import Logout from './Logout';
 import Header from './Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button, Form, Table, FormText} from 'reactstrap';
 
 const url = "http://localhost:8080/user/findall";
 
@@ -14,6 +16,7 @@ function ListUsers(){
     const [gender, setGender] = useState("");
     const [email, setEmail] = useState("");    
     
+    const navigate = useNavigate();
 
     
     const {data, isLoading, isError, isSuccess, error} = useQuery(["rec"], () => 
@@ -39,19 +42,20 @@ function ListUsers(){
     <>
     <Header  />
         
-    <h1>Welcome {sessionStorage.getItem("email")} </h1>
-        <h3>Logged in user: {sessionStorage.getItem("email")} </h3>
     <h2>List of Registered Users Information</h2>
    
-    <div>
-        <table>
+    <Form>
+    <FormText>Logged in user:<b> {sessionStorage.getItem("email")} </b></FormText>
+        
+        <Table bordered hover responsive>
             <thead>
             <tr>
-                <td>Lastname</td>
-                <td>Firstname</td>
-                <td>Email</td>
-                <td>Gender</td>                
-                </tr>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Email</th>
+                <th>Gender</th>
+                
+            </tr>
             
             </thead>
             
@@ -64,27 +68,21 @@ function ListUsers(){
                       <td>{rec.firstname}</td>
                       <td>{rec.email}</td>
                       <td>{rec.gender}</td>
+                      <td>
+                      <Button type="button" onClick={(e) => navigate("/profile/"+ rec.id)} >Edit Profile</Button> 
+                       </td>
                       </tr>
              </tbody>
             )}
 
                 )
             
-            
-            
             }
             
-           
-            
-            </table>
-        
-        
-        
-        </div>
-    
-        <div>
+            </Table>
+
         <Logout />
-        </div>
+        </Form>
     </>
     );
 }

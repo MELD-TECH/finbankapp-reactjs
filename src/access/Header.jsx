@@ -1,16 +1,12 @@
 import {useState} from 'react';
-import {NavLink} from 'react-router-dom';
 import './Sample.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Nav, NavItem, NavLink, Navbar, NavbarText, Button, Badge} from 'reactstrap';
 
 const data = [
     {
         title:'List Users',
         link:'/listusers',
-    },
-    
-    {
-        title:'Profile',
-        link:'/Profile',
     },
     
     {
@@ -26,16 +22,14 @@ function Header(){
     return(
     
         <>
-          <div>
-                    
-        </div>
-        
-        <ul>
+    <Navbar color="light">
+    <Nav pills>        
+        <NavItem>
         {nav.map((res, index) => (
                 <li key={index} className='display:{inlineBlock}'>
-                <NavLink to={res.link}>
+                <NavLink href={res.link} active>
                     {res.title}
-                    </NavLink>
+                </NavLink>
                 
                 </li>
                 
@@ -43,7 +37,20 @@ function Header(){
         }
         
         
-        </ul>
+        </NavItem>
+    </Nav>
+    <NavbarText>
+    <Button
+    color="primary"
+    outline
+    >
+    Notifications{' '}
+         <Badge>
+             4
+          </Badge>
+       </Button>        
+    </NavbarText>
+    </Navbar>
         </>
     
     

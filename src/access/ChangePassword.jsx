@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 import {useState} from 'react'; 
 import Logout from './Logout';
 import Header from './Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button, Form, FormGroup, Input, Label, Row, Col, FormText, Alert} from 'reactstrap';
 
 const url = "http://localhost:8080/user/change-password";
 
@@ -30,9 +32,10 @@ function ChangePassword(){
             
             if(res.data.message === "Bad-Credentials"){
                 alert("Wrong email or password provided. Check the details properly");
-                navigate("/listusers")
+                 navigate("/listusers")
             }else if(res.data.message === "Success"){
-                alert("Password changed successfully");                
+                alert("Password changed successfully"); 
+                navigate("/listusers")
             }else{
                 alert("Bad Credentials!");
             }
@@ -45,45 +48,42 @@ function ChangePassword(){
     
     if(action.isError) return "Error has occurred " + action.error.message;
     
-    if(action.isSuccess) return(
-       <div>
-        <h2>Password changed Successfully</h2>
-        <Logout />
-        </div>
-    );
+
     const submitData = () => {
         action.mutate({email, currentPassword, newPassword});
-        
-        navigate("/");
+        navigate("/listusers")
     }
     
     return(
     <>
      <Header />
-        
+        <center>
         <h1>Change Password</h1>
-        <div>
-        <div>
-           <label>Email:    </label>
-             <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} ></input>
-            </div>
-            <br />
-            <div>
-            <label>Current Password:  </label>
-            <input type="password" onChange={e => setCurrentPassword(e.target.value)} value={currentPassword} ></input>
-            </div>
-            <br />
-            <div>
-            <label>New Password:  </label>
-            <input type="password" onChange={e => setNewPassword(e.target.value)} value={newPassword} ></input>
-            </div>
-            <br />                         
-        </div> 
+        </center>
         
-            <div>
-                <button type="submit" onClick={submitData}>Submit</button>
-           </div>
+    <Form>
         
+        <FormGroup>
+           <Label for="txtEmail">Email </Label>
+            {"  "}
+           <Input id="txtEmail" name="email" placeholder="example@email.com" type="email" onChange={(e) => setEmail(e.target.value)} value={email} ></Input>
+        </FormGroup>            
+        <FormGroup>
+            <Label for="txtCurrentPassword">Current Password:  </Label>
+            <Input id="txtCurrentPassword" name="currentPassword" placeholder="*******" type="password" onChange={e => setCurrentPassword(e.target.value)} value={currentPassword} ></Input>
+        </FormGroup>
+            
+        <FormGroup>
+            <Label for="txtNewPassword">New Password:  </Label>
+            <Input id="txtNewPassword" name="newPassword" placeholder="*******" type="password" onChange={e => setNewPassword(e.target.value)} value={newPassword} ></Input>
+        </FormGroup>                 
+             
+            <FormGroup>
+                <Button type="submit" onClick={submitData} color="success" block>Submit</Button>
+           </FormGroup>
+            
+        <Logout />
+     </Form> 
     </>
     )
     

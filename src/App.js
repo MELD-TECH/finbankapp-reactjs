@@ -7,9 +7,11 @@ import NoPage from './pages/NoPage';
 import Login from './access/Login';
 import Register from './access/Register';
 import ListUsers from './access/ListUsers';
+import ProfileUpdate from './access/ProfileUpdate';
 
 import Logout from './access/Logout';
 import ChangePassword from './access/ChangePassword';
+
 
 export default function App(){
     
@@ -24,7 +26,10 @@ export default function App(){
           <Route path="listusers" element={<ListUsers />} /> 
           <Route path="logout" element={<Logout />}/>
           <Route path="changepassword" element={<ChangePassword />}/>
+          <Route path="profile/:id" element={<ProfileUpdate />} /> 
           <Route path="*" element={<NoPage />} />
+        
+        
         
         </Route> 
                   
